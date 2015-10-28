@@ -1,0 +1,10 @@
+{
+  "applications": {
+    "_default": {
+      "link": "mp parse"
+    },
+    "mp parse": {
+      "applicationId": "hicvuvsjWekRiJGFdeK1GSUoTikmUDF85ilcopjt"
+    }
+  }
+}
