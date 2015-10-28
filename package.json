@@ -7,7 +7,8 @@
     "build:webpack": "NODE_ENV=production webpack --config webpack.config.prod.js",
     "build": "npm run clean && npm run build:webpack",
     "start": "node devServer.js",
-    "lint": "eslint src"
+    "lint": "eslint src",
+    "deploy": "rm -rf public && npm run build && parse deploy"
   },
   "repository": {
     "type": "git",
@@ -40,6 +41,7 @@
     "eslint": "^1.3.1",
     "eslint-plugin-react": "^2.3.0",
     "express": "^4.13.3",
+    "html-webpack-plugin": "^1.6.2",
     "react-transform-catch-errors": "^1.0.0",
     "react-transform-hmr": "^1.0.0",
     "redbox-react": "^1.0.1",
@@ -49,6 +51,7 @@
     "webpack-hot-middleware": "^2.0.0"
   },
   "dependencies": {
+    "parse": "^1.6.7",
     "react": "^0.13.0"
   }
 }

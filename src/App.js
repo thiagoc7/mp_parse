@@ -1,38 +1,22 @@
 import React, { Component } from 'react';
-import { NICE, SUPER_NICE } from './colors';
+import Parse from 'parse';
 
-class Counter extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { counter: 0 };
-    this.interval = setInterval(() => this.tick(), 1000);
-  }
-
-  tick() {
-    this.setState({
-      counter: this.state.counter + this.props.increment
-    });
-  }
-
-  componentWillUnmount() {
-    clearInterval(this.interval);
-  }
-
-  render() {
-    return (
-      <h1 style={{ color: this.props.color }}>
-        Counter ({this.props.increment}): {this.state.counter}
-      </h1>
-    );
-  }
-}
+Parse.initialize('hicvuvsjWekRiJGFdeK1GSUoTikmUDF85ilcopjt', 'cT8A4El4yQz3fEZ5V59MBrOanmv1jgmTo3K6xJFX')
 
 export class App extends Component {
+  constructor(props){
+    super(props);
+
+    const model = Parse.Object.extend("test");
+    let test = new model()
+    test.set('title', 'oie')
+    test.save()
+  }
+
   render() {
     return (
       <div>
-        <Counter increment={1} color={NICE} />
-        <Counter increment={5} color={SUPER_NICE} />
+        <h1>oie</h1>
       </div>
     );
   }
