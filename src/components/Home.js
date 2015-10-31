@@ -1,13 +1,16 @@
 import React, { Component } from 'react';
 
 import { connect } from 'react-redux';
-import { addTodo, toggleCompleteTodo, removeTodo, editTodo, toggleEditTodo, setVisibilityFilter, VisibilityFilters } from './../redux/actions';
+import { VisibilityFilters } from './../constants/actionTypes'
+import { addTodo, toggleCompleteTodo, removeTodo, editTodo, toggleEditTodo, setVisibilityFilter } from './../actions/todo';
 
 import AddTodo from '../components/AddTodo';
 import TodoList from '../components/TodoList';
 import Footer from '../components/Footer';
 
 import Hover from '../components/hover/Hover'
+
+import Reddit from '../components/reddit/Reddit'
 
 @connect((state) => {
   return {
@@ -41,6 +44,10 @@ export default class Home extends Component {
           <Hover
               dispatch={dispatch}
               hover={hover}/>
+
+          <div className="row">
+            <Reddit />
+          </div>
         </div>
     );
   }

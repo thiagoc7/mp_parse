@@ -11,9 +11,10 @@ import Home from './components/Home'
 // redux
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
-import todoApp from './redux/reducers';
 
-let store = createStore(todoApp);
+import configureStore from './store/configureStore'
+
+const store = configureStore()
 
 
 export class App extends Component {

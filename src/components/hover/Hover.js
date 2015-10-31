@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 
-import { setHoverState, setHoverColor } from './../../redux/actions'
+import { setHoverState, setHoverColor } from './../../actions/hover'
 
 export default class Hover extends Component {
   constructor(props) {
