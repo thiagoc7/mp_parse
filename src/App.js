@@ -6,11 +6,15 @@ import './styles/skeleton.css'
 
 Parse.initialize('hicvuvsjWekRiJGFdeK1GSUoTikmUDF85ilcopjt', 'cT8A4El4yQz3fEZ5V59MBrOanmv1jgmTo3K6xJFX')
 
-import Home from './components/Home'
+import Navbar from './components/Navbar'
 
 // redux
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
+
+//router
+import { ReduxRouter } from 'redux-router';
+import routes from './routes'
 
 import configureStore from './store/configureStore'
 
@@ -31,13 +35,10 @@ export class App extends Component {
     return (
         <div className="container">
           <div className="row">
-            <h1>
-              Mp Parse
-            </h1>
-          </div>
-          <div className="row">
             <Provider store={store}>
-              <Home />
+              <ReduxRouter>
+                {routes}
+              </ReduxRouter>
             </Provider>
           </div>
         </div>
