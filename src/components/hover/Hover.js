@@ -1,19 +1,21 @@
 import React, { Component, PropTypes } from 'react';
+import { connect } from 'react-redux'
 
 import { setHoverState, setHoverColor } from './../../actions/hover'
 
+@connect((state) => {
+  return {
+    hover: state.hover
+  };
+})
 export default class Hover extends Component {
-  constructor(props) {
-    super(props)
-  }
-
   render() {
-    const {dispatch} = this.props;
+    const { dispatch, hover } = this.props;
 
     return (
         <div>
           <div className="row">
-            <input style={{margin: 5}} type="text" ref="input" defaultValue={this.props.hover.color}/>
+            <input style={{margin: 5}} type="text" ref="input" defaultValue={hover.color}/>
             <button onClick={() => {
             dispatch(setHoverColor(this.refs.input.value))
           }}>edit</button>
@@ -23,7 +25,7 @@ export default class Hover extends Component {
               className="row"
               onMouseLeave={() => dispatch(setHoverState(false))}
               onMouseEnter={() => dispatch(setHoverState(true))}>
-            <div style={{backgroundColor: this.props.hover.isHovering ? this.props.hover.color : undefined}}>
+            <div style={{backgroundColor: hover.isHovering ? hover.color : undefined}}>
               <div style={{width: 30, height: 30}}></div>
 
             </div>

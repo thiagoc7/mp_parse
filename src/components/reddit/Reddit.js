@@ -4,11 +4,32 @@ import { selectReddit, fetchPostsIfNeeded, invalidateReddit } from '../../action
 import Picker from './Picker'
 import Posts from './Posts'
 
-class Reddit extends Component {
-  constructor(props) {
-    super(props)
-    this.handleChange = this.handleChange.bind(this)
-    this.handleRefreshClick = this.handleRefreshClick.bind(this)
+@connect((state) => {
+  const { selectedReddit, postsByReddit } = state
+  const {
+      isFetching,
+      lastUpdated,
+      items: posts
+      } = postsByReddit[selectedReddit] || {
+    isFetching: true,
+    items: []
+  }
+
+  return {
+    selectedReddit,
+    posts,
+    isFetching,
+    lastUpdated
+  }
+})
+export default class Reddit extends Component {
+
+  static propTypes = {
+    selectedReddit: PropTypes.string.isRequired,
+    posts: PropTypes.array.isRequired,
+    isFetching: PropTypes.bool.isRequired,
+    lastUpdated: PropTypes.number,
+    dispatch: PropTypes.func.isRequired
   }
 
   componentDidMount() {
@@ -40,7 +61,7 @@ class Reddit extends Component {
     return (
         <div>
           <Picker value={selectedReddit}
-                  onChange={this.handleChange}
+                  onChange={this.handleChange.bind(this)}
                   options={[ 'reactjs', 'frontend' ]} />
           <p>
             {lastUpdated &&
@@ -51,7 +72,7 @@ class Reddit extends Component {
             }
             {!isFetching &&
             <a href='#'
-               onClick={this.handleRefreshClick}>
+               onClick={this.handleRefreshClick.bind(this)}>
               Refresh
             </a>
             }
@@ -71,32 +92,3 @@ class Reddit extends Component {
     )
   }
 }
-
-Reddit.propTypes = {
-  selectedReddit: PropTypes.string.isRequired,
-  posts: PropTypes.array.isRequired,
-  isFetching: PropTypes.bool.isRequired,
-  lastUpdated: PropTypes.number,
-  dispatch: PropTypes.func.isRequired
-}
-
-function mapStateToProps(state) {
-  const { selectedReddit, postsByReddit } = state
-  const {
-      isFetching,
-      lastUpdated,
-      items: posts
-      } = postsByReddit[selectedReddit] || {
-    isFetching: true,
-    items: []
-  }
-
-  return {
-    selectedReddit,
-    posts,
-    isFetching,
-    lastUpdated
-  }
-}
-
-export default connect(mapStateToProps)(Reddit)

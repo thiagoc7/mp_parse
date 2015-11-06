@@ -12,6 +12,7 @@ export default class Navbar extends Component {
         <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', cursor: 'pointer'}}>
           <h1 onClick={() => this.props.dispatch(pushState(null, '/'))}>Mp Parse</h1>
           <Link to="/hover">Hover</Link>
+          <h4 onClick={() => this.props.dispatch(pushState(null, '/todos'))} >Todos</h4>
           <h4 onClick={() => this.props.dispatch(pushState(null, '/reddit'))} >Reddit</h4>
         </div>
     )
